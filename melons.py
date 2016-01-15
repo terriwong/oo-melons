@@ -13,7 +13,7 @@ class AbstractMelonOrder(object):
 
     def get_total(self):
         """Gets the price for ALL melons!"""
-        
+
         base_price=5
         if self.species == "Christmas":
             base_price=1.5*base_price
@@ -36,7 +36,18 @@ class DomesticMelonOrder(AbstractMelonOrder):
     order_type = "domestic"
     tax = 0.08
 
+class GovernmentMelonOrder(AbstractMelonOrder):
 
+    tax=0
+    passed_inspection=False
+
+    def inspect_melons(self,passed):
+        """takes in a boolean input and updates passed_inspection."""
+        if passed == True:
+            self.passed_inspection = True
+            # return True
+
+   
 class InternationalMelonOrder(AbstractMelonOrder):
     """An international (non-US) melon order."""
 
