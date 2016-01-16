@@ -17,11 +17,12 @@ class AbstractMelonOrder(object):
 
         base_price = randint(5,9)    
         
-        # now = datetime.datetime.now()
-        if 1 <= datetime.datetime.today().weekday() >= 5 and 8 <= datetime.datetime.now().hour >= 11:
+        weekday = datetime.datetime.today().weekday()
+        hour = datetime.datetime.now().hour
+
+        if 0 <= weekday >= 4 and 8 <= hour >= 11:
             base_price =+ 4
-
-
+            
 
     def get_total(self):
         """Gets the price for ALL melons!"""
