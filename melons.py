@@ -1,5 +1,8 @@
 """This file should have our order classes in it."""
 
+from random import randint
+import datetime
+
 class AbstractMelonOrder(object):
     """This is melon order for all classes."""
     def __init__(self, species, qty):
@@ -10,11 +13,21 @@ class AbstractMelonOrder(object):
         self.order_type = None
         self.tax = None
 
+    def get_base_price(self):
+
+        base_price = randint(5,9)    
+        
+        # now = datetime.datetime.now()
+        if 1 <= datetime.datetime.today().weekday() >= 5 and 8 <= datetime.datetime.now().hour >= 11:
+            base_price =+ 4
+
+
 
     def get_total(self):
         """Gets the price for ALL melons!"""
 
-        base_price=5
+        base_price = self.get_base_price()
+
         if self.species == "Christmas":
             base_price=1.5*base_price
         
@@ -43,7 +56,7 @@ class GovernmentMelonOrder(AbstractMelonOrder):
 
     def inspect_melons(self,passed):
         """takes in a boolean input and updates passed_inspection."""
-        if passed == True:
+        if passed:
             self.passed_inspection = True
             # return True
 
